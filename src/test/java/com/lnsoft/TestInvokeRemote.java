@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 无MQ测试
  * Created By Chr on 2019/2/11/0011.
  */
 @SpringBootTest(classes = TripClientApplication.class)
@@ -25,10 +26,15 @@ public class TestInvokeRemote {
     RestTemplate restTemplate = new RestTemplate();
 
     //并发量
-    private static final int USER_NUMBERS = 5;//200-10000
+    private static final int USER_NUMBERS = 200;//200-10000
     //CountDownLatch 并发用的多，测试并发的神器
     private static CountDownLatch cdl = new CountDownLatch(USER_NUMBERS);
 
+    /**
+     * 无mq模拟并发
+     *
+     * @throws InterruptedException
+     */
     @Test
     public void TestInvoke() throws InterruptedException {
         for (int i = 0; i < USER_NUMBERS; i++) {
@@ -39,8 +45,11 @@ public class TestInvokeRemote {
         }
     }
 
+    /**
+     * 无mq模拟高并发
+     */
     //模拟多线程
-    public class TicketRequest implements Runnable{
+    public class TicketRequest implements Runnable {
 
         @Override
         public void run() {

@@ -23,12 +23,16 @@ public class TicketInfoReceive {
      *
      * @param ticketInfo
      */
-    @RabbitListener(queues = "topic.ticketRespInfo")
+    @RabbitListener(queues = "topic.ticketRespInfo")//客户端监听服务端的队列，有消息就拉取共客户端使用
     @RabbitHandler
     public void process1(String ticketInfo, Message message, Channel channel) throws IOException {
         try {
+
+            //###############################################
             //模拟消费者从服务器出票队列中拉取数据，查看是否出票成功
-            System.out.println("服务器订单系统和出票系统已经操作完毕，出票成功！！===response from 12306 ticketInfo is===" + ticketInfo);
+            System.out.println("服务器订单系统和出票系统已经操作完毕，出票成功！！===response from 12306 ticketInfo is===" + ticketInfo+"===");
+            //###############################################
+
             //接到消息确认回执
             //告诉服务器收到这条消息 已经被我消费了 可以在队列删掉 这样以后就不会再发了 否则消息服务器以为这条消息没处理掉 后续还会在发
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); // false只确认当前一个消息收到，true确认所有consumer获得的消息

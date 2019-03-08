@@ -9,6 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 有MQ测试
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TripClientApplicationTests {
@@ -22,7 +25,9 @@ public class TripClientApplicationTests {
     private RabbitSender rabbitSender;
 
     /**
-     * 模拟并发
+     * MQ模拟并发
+     *
+     * @throws InterruptedException
      */
     @Test
     public void contextLoads() throws InterruptedException {
@@ -36,7 +41,7 @@ public class TripClientApplicationTests {
     }
 
     /**
-     * 内部类继承线程接口，模拟买票请求
+     * 内部类继承线程接口，模拟买票请求，有MQ
      */
     public class UserRequest implements Runnable {
 
