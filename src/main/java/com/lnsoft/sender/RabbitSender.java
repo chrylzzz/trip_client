@@ -20,6 +20,8 @@ public class RabbitSender {
      * @param routeKey  ：路由键
      * @param content   ：发送内容
      */
+    //首先客户端 发送消息到队列中，不需要监听，服务端需要监听客户端的queue，
+    //然后客户端在监听服务端的queue
     public void sendTopic(String exchange,String routeKey,String content){
         System.out.println("    客户端已经发送消息到 ：客户端的队列中~，等待服务端监听客户端队列，并拉去消息~");
         //消费者下单车票到队列中：数据内容通过路由键，绑定到对应的交换器，
