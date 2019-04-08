@@ -54,6 +54,7 @@ public class TripClientApplicationTests {
             }
             String exchange = "exchange";//交换器
             String routeKey = "topic.ticket.routeKey";//路由key
+            //idcard为content
             String idcard = "123456";
             rabbitSender.sendTopic(exchange, routeKey, idcard);
         }
