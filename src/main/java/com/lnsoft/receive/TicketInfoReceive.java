@@ -40,6 +40,10 @@ public class TicketInfoReceive {
 
 
 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
             //#######################################################
             if (message.getMessageProperties().getRedelivered()) {//该消息已经被消费
                 System.out.println("消息已重复处理失败,拒绝再次接收...");
@@ -48,10 +52,6 @@ public class TicketInfoReceive {
                 System.out.println("消息即将再次返回队列处理...");
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true); // requeue为是否重新回到队列
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-
-
 
         }
     }
